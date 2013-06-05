@@ -5,8 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using Moq;
 using Ninject;
-using SportTracker.WebUI.Abstract;
-using SportTracker.WebUI.Models;
+
+using SportTracker.Domain.Abstract;
+using SportTracker.Domain.Concrete;
+using SportTracker.Domain.Entities;
 
 namespace SportTracker.WebUI.Infrastructure
 {
@@ -30,20 +32,7 @@ namespace SportTracker.WebUI.Infrastructure
 
 		private void AddBindings()
 		{
-			Mock<IMuscleRepository> mock = new Mock<IMuscleRepository>();
-			mock.Setup(m => m.Muscles).Returns(new List<Muscle>
-				                                   {
-					                                   new Muscle {Name = "Core", Description = "Core muscles"},
-					                                   new Muscle {Name = "Lower Body", Description = "This is lower body"},
-					                                   new Muscle {Name = "Chest", Description = "This is chest"},
-																  new Muscle {Name = "Shoulders", Description = "123"},
-					                                   new Muscle {Name = "Back", Description = "123"},
-					                                   new Muscle {Name = "Arms", Description = "123"},
-																  new Muscle {Name = "Cardio", Description = "123"},
-					                                   new Muscle {Name = "Stretches", Description = "123"},
-					                                   
-				                                   }.AsQueryable());
-			kernel.Bind<IMuscleRepository>().ToConstant(mock.Object);
+			kernel.Bind<IMuscleRepository>().To<EFMuscleRepository>();
 		}
 	}
 }

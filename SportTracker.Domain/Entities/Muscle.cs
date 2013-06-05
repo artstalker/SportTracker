@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace SportTracker.WebUI.Models
+﻿namespace SportTracker.Domain.Entities
 {
 	public class Muscle
 	{
