@@ -9,6 +9,8 @@ using Ninject;
 using SportTracker.Domain.Abstract;
 using SportTracker.Domain.Concrete;
 using SportTracker.Domain.Entities;
+using SportTracker.WebUI.Infrastructure.Abstract;
+using SportTracker.WebUI.Infrastructure.Concrete;
 
 namespace SportTracker.WebUI.Infrastructure
 {
@@ -33,6 +35,7 @@ namespace SportTracker.WebUI.Infrastructure
 		private void AddBindings()
 		{
 			kernel.Bind<IMuscleRepository>().To<EFMuscleRepository>();
+			kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
 		}
 	}
 }

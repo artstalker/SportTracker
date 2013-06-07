@@ -7,6 +7,7 @@ using Models;
 
 namespace BootstrapMvcSample.Controllers
 {
+	[Authorize]
     public class HomeController : BootstrapBaseController
     {
         private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
