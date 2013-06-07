@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿#region using
+using System.Linq;
 
-using SportTracker.Domain.Entities;
+#endregion
 
 namespace SportTracker.Domain.Abstract
 {
-	public interface IMuscleRepository
-	{
-		IQueryable<Muscle> Muscles { get; }
-	}
+   public interface IMuscleRepository
+   {
+      IQueryable<Muscle> Muscles { get; }
+   }
 }
