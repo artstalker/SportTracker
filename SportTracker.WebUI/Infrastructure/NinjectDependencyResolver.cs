@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using Ninject;
 using SportTracker.Domain;
 using SportTracker.Domain.Abstract;
+using SportTracker.WebUI.Infrastructure.Abstract;
+using SportTracker.WebUI.Infrastructure.Concrete;
 
 #endregion
 
@@ -31,8 +33,9 @@ namespace SportTracker.WebUI.Infrastructure
       }
 
       private void AddBindings()
-      {                  
+      {
          kernel.Bind<IMuscleRepository>().To<ModelSportTrackerContainer>();
-      }
-   }
+         kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+      }		
+	}
 }
