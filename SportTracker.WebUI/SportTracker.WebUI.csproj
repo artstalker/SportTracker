@@ -164,6 +164,7 @@
     <Compile Include="Infrastructure\WebSecurityInitializer .cs" />
     <Compile Include="Models\HomeInputModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
     <Compile Include="NavigationRoutes\NamedRoute.cs" />

@@ -34,5 +34,6 @@ namespace SportTracker.Domain
         public DbSet<Tweet> Tweets { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Program> Programs { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
     }
 }

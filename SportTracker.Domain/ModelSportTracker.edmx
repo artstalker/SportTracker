@@ -381,6 +381,7 @@
             <End Role="Training" EntitySet="Trainings" />
             <End Role="Statistic" EntitySet="Statistics" />
           </AssociationSet>
+          <EntitySet Name="Memberships" EntityType="ModelSportTracker.Membership" />
         </EntityContainer>
         <EntityType Name="Muscle">
           <Key>
@@ -571,6 +572,22 @@
           </End>
           <End Type="ModelSportTracker.Statistic" Role="Statistic" Multiplicity="*" />
         </Association>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="String" Name="ConfirmationToken" Nullable="false" />
+          <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
+          <Property Type="DateTime" Name="LastPasswordFailureDate" Nullable="false" />
+          <Property Type="Int32" Name="PasswordFailuresSinceLastSuccess" Nullable="false" />
+          <Property Type="DateTime" Name="PasswordChangedDate" Nullable="false" />
+          <Property Type="String" Name="PasswordSalt" Nullable="false" />
+          <Property Type="String" Name="PasswordVerificationToken" Nullable="false" />
+          <Property Type="DateTime" Name="PasswordVerificationTokenExpirationDate" Nullable="true" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

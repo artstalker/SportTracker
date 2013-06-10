@@ -31,6 +31,7 @@
         </AssociationConnector>
         <AssociationConnector Association="ModelSportTracker.ProgramProgramExcercise" />
         <AssociationConnector Association="ModelSportTracker.TrainingStatistic" />
+        <EntityTypeShape EntityType="ModelSportTracker.Membership" Width="2.375" PointX="2.5" PointY="4.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
