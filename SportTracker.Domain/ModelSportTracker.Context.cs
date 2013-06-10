@@ -18,6 +18,7 @@ namespace SportTracker.Domain
         public ModelSportTrackerContainer()
             : base("name=ModelSportTrackerContainer")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

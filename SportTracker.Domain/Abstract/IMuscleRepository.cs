@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SportTracker.Domain.Abstract
 {
-   public interface IMuscleRepository
+   public interface IMuscleRepository : IBaseRepository
    {
       IQueryable<Muscle> Muscles { get; }
    }

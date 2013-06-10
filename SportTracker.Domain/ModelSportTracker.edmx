@@ -327,7 +327,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelSportTracker" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="ModelSportTrackerContainer" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ModelSportTrackerContainer" annotation:LazyLoadingEnabled="false" cg:TypeAccess="Public">
           <EntitySet Name="Muscles" EntityType="ModelSportTracker.Muscle" />
           <EntitySet Name="Excercises" EntityType="ModelSportTracker.Excercise" />
           <EntitySet Name="ProgramExcercises" EntityType="ModelSportTracker.ProgramExcercise" />

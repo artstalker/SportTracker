@@ -2,11 +2,12 @@
 
 namespace SportTracker.Domain
 {   
-   partial class ModelSportTrackerContainer: IMuscleRepository
+   partial class ModelSportTrackerContainer
    {
-      System.Linq.IQueryable<Muscle> IMuscleRepository.Muscles
+      public ModelSportTrackerContainer(string connectionName)
+         : base(connectionName)
       {
-         get { return this.Muscles; }
-      }
+         this.Configuration.LazyLoadingEnabled = false;
+      }      
    }
 }
