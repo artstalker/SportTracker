@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Ninject;
 using SportTracker.Domain;
 using SportTracker.Domain.Abstract;
+using SportTracker.Domain.Concrete;
 using SportTracker.WebUI.Infrastructure.Abstract;
 using SportTracker.WebUI.Infrastructure.Concrete;
 
@@ -34,7 +35,8 @@ namespace SportTracker.WebUI.Infrastructure
 
       private void AddBindings()
       {
-         kernel.Bind<IMuscleRepository>().To<ModelSportTrackerContainer>();
+         kernel.Bind<IMuscleRepository>().To<MuscleRepository>();
+         kernel.Bind<IUserRepository>().To<UserRepository>();
          kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
       }		
 	}

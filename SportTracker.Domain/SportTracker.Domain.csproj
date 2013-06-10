@@ -49,11 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\BaseRepository.cs" />
+    <Compile Include="Abstract\IBaseRepository.cs" />
     <Compile Include="Abstract\IMuscleRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="BodyStamp.cs">
       <DependentUpon>ModelSportTracker.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Membership.cs" />
+    <Compile Include="Concrete\MuscleRepository.cs" />
+    <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="Excercise.cs">
       <DependentUpon>ModelSportTracker.tt</DependentUpon>
     </Compile>
