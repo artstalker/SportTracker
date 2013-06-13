@@ -23,15 +23,17 @@
         <AssociationConnector Association="ModelSportTracker.StatisticExcercise" />
         <AssociationConnector Association="ModelSportTracker.ProgramTraining" />
         <AssociationConnector Association="ModelSportTracker.UserTraining" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.625" PointY="2.754460183811053" />
-          <ConnectorPoint PointX="4.815575" PointY="2.754460183811053" />
-          <ConnectorPoint PointX="4.815575" PointY="2.7494660632742622" />
-          <ConnectorPoint PointX="6.375" PointY="2.7494660632742622" />
-          <ConnectorPoint PointX="6.375" PointY="3.25" />
+          <ConnectorPoint PointX="4.625" PointY="2.0117868294047963" />
+          <ConnectorPoint PointX="5.125" PointY="6.2467273960537462" />
+          <ConnectorPoint PointX="5.625" PointY="4.4516321048196055" />
         </AssociationConnector>
         <AssociationConnector Association="ModelSportTracker.ProgramProgramExcercise" />
         <AssociationConnector Association="ModelSportTracker.TrainingStatistic" />
-        <EntityTypeShape EntityType="ModelSportTracker.Membership" Width="2.375" PointX="2.5" PointY="4.625" />
+        <EntityTypeShape EntityType="ModelSportTracker.Membership" Width="2.375" PointX="2.125" PointY="4.875" />
+        <EntityTypeShape EntityType="ModelSportTracker.OAuthMembership" Width="1.5" PointX="0.5" PointY="6.25" />
+        <EntityTypeShape EntityType="ModelSportTracker.Config" Width="1.5" PointX="2.125" PointY="8.875" />
+        <EntityTypeShape EntityType="ModelSportTracker.Role" Width="1.5" PointX="6" PointY="0.625" />
+        <AssociationConnector Association="ModelSportTracker.UserRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

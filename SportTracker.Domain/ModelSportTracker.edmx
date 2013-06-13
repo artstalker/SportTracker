@@ -15,7 +15,12 @@
     <EntitySet Name="Tweets" EntityType="ModelSportTracker.Store.Tweets" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="ModelSportTracker.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Programs" EntityType="ModelSportTracker.Store.Programs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Memberships" EntityType="ModelSportTracker.Store.Memberships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OAuthMemberships" EntityType="ModelSportTracker.Store.OAuthMemberships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Configs" EntityType="ModelSportTracker.Store.Configs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="ModelSportTracker.Store.Roles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ExcerciseMuscle" EntityType="ModelSportTracker.Store.ExcerciseMuscle" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRole" EntityType="ModelSportTracker.Store.UserRole" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserBodyStamp" Association="ModelSportTracker.Store.UserBodyStamp">
       <End Role="User" EntitySet="Users" />
       <End Role="BodyStamp" EntitySet="BodyStamps" />
@@ -64,12 +69,20 @@
       <End Role="Training" EntitySet="Trainings" />
       <End Role="Statistic" EntitySet="Statistics" />
     </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="ModelSportTracker.Store.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="ModelSportTracker.Store.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Muscles">
     <Key>
       <PropertyRef Name="MuscleId" />
     </Key>
-    <Property Name="MuscleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MuscleId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
@@ -78,7 +91,7 @@
     <Key>
       <PropertyRef Name="ExcerciseId" />
     </Key>
-    <Property Name="ExcerciseId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ExcerciseId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Complexity" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
@@ -88,57 +101,57 @@
     <Key>
       <PropertyRef Name="ProgramExcerciseId" />
     </Key>
-    <Property Name="ProgramExcerciseId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProgramExcerciseId" Type="int" Nullable="false" />
     <Property Name="Day" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Order" Type="smallint" Nullable="false" />
     <Property Name="SetCounts" Type="nvarchar(max)" Nullable="false" />
     <Property Name="RepsScheme" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ProgramProgramId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Excercise_ExcerciseId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProgramProgramId" Type="int" Nullable="false" />
+    <Property Name="Excercise_ExcerciseId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Statistics">
     <Key>
       <PropertyRef Name="StatisticId" />
     </Key>
-    <Property Name="StatisticId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StatisticId" Type="int" Nullable="false" />
     <Property Name="SetNumber" Type="smallint" Nullable="false" />
     <Property Name="RepsCount" Type="smallint" Nullable="false" />
     <Property Name="Weight" Type="float" Nullable="false" />
     <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateTime" Type="datetime" Nullable="false" />
-    <Property Name="Excercise_ExcerciseId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Training_TrainingId" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Excercise_ExcerciseId" Type="int" Nullable="false" />
+    <Property Name="Training_TrainingId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Trainings">
     <Key>
       <PropertyRef Name="TrainingId" />
     </Key>
-    <Property Name="TrainingId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TrainingId" Type="int" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="true" />
     <Property Name="Shift" Type="int" Nullable="true" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="Program_ProgramId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="User_UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Program_ProgramId" Type="int" Nullable="false" />
+    <Property Name="User_UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BodyStamps">
     <Key>
       <PropertyRef Name="BodyStampId" />
     </Key>
-    <Property Name="BodyStampId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BodyStampId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserUserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Weight" Type="float" Nullable="false" />
     <Property Name="Height" Type="float" Nullable="false" />
     <Property Name="Biceps" Type="float" Nullable="false" />
     <Property Name="Waist" Type="float" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="User_UserId" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="User_UserId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Tweets">
     <Key>
       <PropertyRef Name="TweetId" />
     </Key>
     <Property Name="TweetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserUserId" Type="int" Nullable="false" />
     <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DateTime" Type="datetime" Nullable="false" />
   </EntityType>
@@ -146,30 +159,75 @@
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserUser_User1_UserId" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="UserUser_User1_UserId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Programs">
     <Key>
       <PropertyRef Name="ProgramId" />
     </Key>
-    <Property Name="ProgramId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProgramId" Type="int" Nullable="false" />
+    <Property Name="UserUserId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsOpenToWorld" Type="bit" Nullable="false" />
     <Property Name="Cost" Type="decimal" Nullable="true" />
     <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Memberships">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="CreateDate" Type="datetime" Nullable="true" />
+    <Property Name="ConfirmationToken" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" Nullable="true" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="PasswordChangedDate" Type="datetime" Nullable="true" />
+    <Property Name="PasswordSalt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" Nullable="true" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OAuthMemberships">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Configs">
+    <Key>
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ExcerciseMuscle">
     <Key>
       <PropertyRef Name="Excercises_ExcerciseId" />
       <PropertyRef Name="Muscles_MuscleId" />
     </Key>
-    <Property Name="Excercises_ExcerciseId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Muscles_MuscleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Excercises_ExcerciseId" Type="int" Nullable="false" />
+    <Property Name="Muscles_MuscleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Users_UserId" />
+      <PropertyRef Name="Roles_RoleId" />
+    </Key>
+    <Property Name="Users_UserId" Type="int" Nullable="false" />
+    <Property Name="Roles_RoleId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserBodyStamp">
     <End Role="User" Type="ModelSportTracker.Store.Users" Multiplicity="0..1">
@@ -323,6 +381,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="ModelSportTracker.Store.Users" Multiplicity="1" />
+    <End Role="UserRole" Type="ModelSportTracker.Store.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Users_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="UserRole" Type="ModelSportTracker.Store.UserRole" Multiplicity="*" />
+    <End Role="Role" Type="ModelSportTracker.Store.Roles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Roles_RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -382,12 +464,19 @@
             <End Role="Statistic" EntitySet="Statistics" />
           </AssociationSet>
           <EntitySet Name="Memberships" EntityType="ModelSportTracker.Membership" />
+          <EntitySet Name="OAuthMemberships" EntityType="ModelSportTracker.OAuthMembership" />
+          <EntitySet Name="Configs" EntityType="ModelSportTracker.Config" />
+          <EntitySet Name="Roles" EntityType="ModelSportTracker.Role" />
+          <AssociationSet Name="UserRole" Association="ModelSportTracker.UserRole">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Muscle">
           <Key>
             <PropertyRef Name="MuscleId" />
           </Key>
-          <Property Type="Guid" Name="MuscleId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="MuscleId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Excercises" Relationship="ModelSportTracker.ExcerciseMuscle" FromRole="Muscle" ToRole="Excercise" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Description" Nullable="false" />
@@ -397,7 +486,7 @@
           <Key>
             <PropertyRef Name="ExcerciseId" />
           </Key>
-          <Property Type="Guid" Name="ExcerciseId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="ExcerciseId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Muscles" Relationship="ModelSportTracker.ExcerciseMuscle" FromRole="Excercise" ToRole="Muscle" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Complexity" Nullable="false" />
@@ -410,20 +499,20 @@
           <Key>
             <PropertyRef Name="ProgramExcerciseId" />
           </Key>
-          <Property Type="Guid" Name="ProgramExcerciseId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="ProgramExcerciseId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="String" Name="Day" Nullable="false" />
           <Property Type="Int16" Name="Order" Nullable="false" />
           <Property Type="String" Name="SetCounts" Nullable="false" />
           <Property Type="String" Name="RepsScheme" Nullable="false" />
           <NavigationProperty Name="Excercise" Relationship="ModelSportTracker.ExcerciseProgramExcercise" FromRole="ProgramExcercise" ToRole="Excercise" />
           <NavigationProperty Name="Program" Relationship="ModelSportTracker.ProgramProgramExcercise" FromRole="ProgramExcercise" ToRole="Program" />
-          <Property Type="Guid" Name="ProgramProgramId" Nullable="false" />
+          <Property Type="Int32" Name="ProgramProgramId" Nullable="false" />
         </EntityType>
         <EntityType Name="Statistic">
           <Key>
             <PropertyRef Name="StatisticId" />
           </Key>
-          <Property Type="Guid" Name="StatisticId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="StatisticId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="Int16" Name="SetNumber" Nullable="false" />
           <Property Type="Int16" Name="RepsCount" Nullable="false" />
           <Property Type="Double" Name="Weight" Nullable="false" />
@@ -436,7 +525,7 @@
           <Key>
             <PropertyRef Name="TrainingId" />
           </Key>
-          <Property Type="Guid" Name="TrainingId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="TrainingId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="DateTime" Name="StartDate" Nullable="true" />
           <Property Type="Int32" Name="Shift" Nullable="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
@@ -448,7 +537,7 @@
           <Key>
             <PropertyRef Name="BodyStampId" />
           </Key>
-          <Property Type="Int64" Name="BodyStampId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="BodyStampId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="ModelSportTracker.UserBodyStamp" FromRole="BodyStamp" ToRole="User" />
           <Property Type="Guid" Name="UserUserId" Nullable="false" />
           <Property Type="Double" Name="Weight" Nullable="false" />
@@ -463,7 +552,7 @@
           </Key>
           <Property Type="Int32" Name="TweetId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="ModelSportTracker.UserTweet" FromRole="Tweet" ToRole="User" />
-          <Property Type="Guid" Name="UserUserId" Nullable="false" />
+          <Property Type="Int32" Name="UserUserId" Nullable="false" />
           <Property Type="String" Name="Message" Nullable="false" />
           <Property Type="DateTime" Name="DateTime" Nullable="false" />
         </EntityType>
@@ -471,23 +560,23 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Type="Guid" Name="UserId" annotation:StoreGeneratedPattern="None" Nullable="false" />
+          <Property Type="Int32" Name="UserId" annotation:StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Email" Nullable="false" />
-          <Property Type="String" Name="Role" Nullable="false" />
           <NavigationProperty Name="BodyStamps" Relationship="ModelSportTracker.UserBodyStamp" FromRole="User" ToRole="BodyStamp" />
           <NavigationProperty Name="Friends" Relationship="ModelSportTracker.UserUser" FromRole="User" ToRole="User1" />
           <NavigationProperty Name="Programs" Relationship="ModelSportTracker.UserProgram" FromRole="User" ToRole="Program" />
           <NavigationProperty Name="Tweets" Relationship="ModelSportTracker.UserTweet" FromRole="User" ToRole="Tweet" />
           <NavigationProperty Name="Trainings" Relationship="ModelSportTracker.UserTraining" FromRole="User" ToRole="Training" />
+          <NavigationProperty Name="Roles" Relationship="ModelSportTracker.UserRole" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="ProgramId" />
           </Key>
-          <Property Type="Guid" Name="ProgramId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="Int32" Name="ProgramId" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="User" Relationship="ModelSportTracker.UserProgram" FromRole="Program" ToRole="User" />
-          <Property Type="Guid" Name="UserUserId" Nullable="false" />
+          <Property Type="Int32" Name="UserUserId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="Boolean" Name="IsOpenToWorld" Nullable="false" />
           <Property Type="Decimal" Name="Cost" Nullable="true" />
@@ -574,20 +663,47 @@
         </Association>
         <EntityType Name="Membership">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
-          <Property Type="String" Name="ConfirmationToken" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" />
+          <Property Type="String" Name="ConfirmationToken" />
           <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
-          <Property Type="DateTime" Name="LastPasswordFailureDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastPasswordFailureDate" />
           <Property Type="Int32" Name="PasswordFailuresSinceLastSuccess" Nullable="false" />
-          <Property Type="DateTime" Name="PasswordChangedDate" Nullable="false" />
+          <Property Type="DateTime" Name="PasswordChangedDate" />
           <Property Type="String" Name="PasswordSalt" Nullable="false" />
-          <Property Type="String" Name="PasswordVerificationToken" Nullable="false" />
+          <Property Type="String" Name="PasswordVerificationToken" />
           <Property Type="DateTime" Name="PasswordVerificationTokenExpirationDate" Nullable="true" />
-          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
         </EntityType>
+        <EntityType Name="OAuthMembership" >
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Type="String" Name="Provider" Nullable="false" FixedLength="false" MaxLength="30" Unicode="true" />
+          <Property Type="String" Name="ProviderUserId" Nullable="false" FixedLength="false" Unicode="true" MaxLength="100" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Type="String" Name="Key" Nullable="false" annotation:StoreGeneratedPattern="None" Unicode="true" FixedLength="false" MaxLength="30" />
+          <Property Type="String" Name="Value" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="ModelSportTracker.UserRole" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <Association Name="UserRole">
+          <End Type="ModelSportTracker.User" Role="User" Multiplicity="*" />
+          <End Type="ModelSportTracker.Role" Role="Role" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -678,7 +794,6 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Role" ColumnName="Role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -691,6 +806,47 @@
           <ScalarProperty Name="IsOpenToWorld" ColumnName="IsOpenToWorld" />
           <ScalarProperty Name="Cost" ColumnName="Cost" />
           <ScalarProperty Name="Author" ColumnName="Author" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Memberships">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelSportTracker.Membership)">
+        <MappingFragment StoreEntitySet="Memberships">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OAuthMemberships">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelSportTracker.OAuthMembership)">
+        <MappingFragment StoreEntitySet="OAuthMemberships">
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+          <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Configs">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelSportTracker.Config)">
+        <MappingFragment StoreEntitySet="Configs">
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelSportTracker.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -760,6 +916,14 @@
         <ScalarProperty Name="StatisticId" ColumnName="StatisticId" />
       </EndProperty>
       <Condition ColumnName="Training_TrainingId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRole" TypeName="ModelSportTracker.UserRole" StoreEntitySet="UserRole">
+      <EndProperty Name="User">
+        <ScalarProperty Name="UserId" ColumnName="Users_UserId" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="RoleId" ColumnName="Roles_RoleId" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

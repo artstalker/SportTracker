@@ -14,7 +14,7 @@ namespace SportTracker.Domain
     
     public partial class BodyStamp
     {
-        public long BodyStampId { get; set; }
+        public int BodyStampId { get; set; }
         public System.Guid UserUserId { get; set; }
         public double Weight { get; set; }
         public double Height { get; set; }

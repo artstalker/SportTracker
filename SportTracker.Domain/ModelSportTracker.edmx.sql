@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/07/2013 18:31:44
--- Generated from EDMX file: D:\Work\Git\SportTracker\SportTracker.Domain\ModelSportTracker.edmx
+-- Date Created: 06/13/2013 16:38:47
+-- Generated from EDMX file: C:\Sites\SportTracker\SportTracker.Domain\ModelSportTracker.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -53,6 +53,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TrainingStatistic]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Statistics] DROP CONSTRAINT [FK_TrainingStatistic];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserRole_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_Role];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -85,8 +91,23 @@ GO
 IF OBJECT_ID(N'[dbo].[Programs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Programs];
 GO
+IF OBJECT_ID(N'[dbo].[Memberships]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Memberships];
+GO
+IF OBJECT_ID(N'[dbo].[OAuthMemberships]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OAuthMemberships];
+GO
+IF OBJECT_ID(N'[dbo].[Configs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Configs];
+GO
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
+GO
 IF OBJECT_ID(N'[dbo].[ExcerciseMuscle]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ExcerciseMuscle];
+GO
+IF OBJECT_ID(N'[dbo].[UserRole]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserRole];
 GO
 
 -- --------------------------------------------------
@@ -95,7 +116,7 @@ GO
 
 -- Creating table 'Muscles'
 CREATE TABLE [dbo].[Muscles] (
-    [MuscleId] uniqueidentifier  NOT NULL,
+    [MuscleId] int  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [Url] nvarchar(max)  NOT NULL
@@ -104,7 +125,7 @@ GO
 
 -- Creating table 'Excercises'
 CREATE TABLE [dbo].[Excercises] (
-    [ExcerciseId] uniqueidentifier  NOT NULL,
+    [ExcerciseId] int  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Complexity] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
@@ -114,57 +135,57 @@ GO
 
 -- Creating table 'ProgramExcercises'
 CREATE TABLE [dbo].[ProgramExcercises] (
-    [ProgramExcerciseId] uniqueidentifier  NOT NULL,
+    [ProgramExcerciseId] int  NOT NULL,
     [Day] nvarchar(max)  NOT NULL,
     [Order] smallint  NOT NULL,
     [SetCounts] nvarchar(max)  NOT NULL,
     [RepsScheme] nvarchar(max)  NOT NULL,
-    [ProgramProgramId] uniqueidentifier  NOT NULL,
-    [Excercise_ExcerciseId] uniqueidentifier  NOT NULL
+    [ProgramProgramId] int  NOT NULL,
+    [Excercise_ExcerciseId] int  NOT NULL
 );
 GO
 
 -- Creating table 'Statistics'
 CREATE TABLE [dbo].[Statistics] (
-    [StatisticId] uniqueidentifier  NOT NULL,
+    [StatisticId] int  NOT NULL,
     [SetNumber] smallint  NOT NULL,
     [RepsCount] smallint  NOT NULL,
     [Weight] float  NOT NULL,
     [Note] nvarchar(max)  NOT NULL,
     [DateTime] datetime  NOT NULL,
-    [Excercise_ExcerciseId] uniqueidentifier  NOT NULL,
-    [Training_TrainingId] uniqueidentifier  NULL
+    [Excercise_ExcerciseId] int  NOT NULL,
+    [Training_TrainingId] int  NULL
 );
 GO
 
 -- Creating table 'Trainings'
 CREATE TABLE [dbo].[Trainings] (
-    [TrainingId] uniqueidentifier  NOT NULL,
+    [TrainingId] int  NOT NULL,
     [StartDate] datetime  NULL,
     [Shift] int  NULL,
     [IsActive] bit  NOT NULL,
-    [Program_ProgramId] uniqueidentifier  NOT NULL,
-    [User_UserId] uniqueidentifier  NOT NULL
+    [Program_ProgramId] int  NOT NULL,
+    [User_UserId] int  NOT NULL
 );
 GO
 
 -- Creating table 'BodyStamps'
 CREATE TABLE [dbo].[BodyStamps] (
-    [BodyStampId] bigint IDENTITY(1,1) NOT NULL,
+    [BodyStampId] int IDENTITY(1,1) NOT NULL,
     [UserUserId] uniqueidentifier  NOT NULL,
     [Weight] float  NOT NULL,
     [Height] float  NOT NULL,
     [Biceps] float  NOT NULL,
     [Waist] float  NOT NULL,
     [Date] datetime  NOT NULL,
-    [User_UserId] uniqueidentifier  NULL
+    [User_UserId] int  NULL
 );
 GO
 
 -- Creating table 'Tweets'
 CREATE TABLE [dbo].[Tweets] (
     [TweetId] int IDENTITY(1,1) NOT NULL,
-    [UserUserId] uniqueidentifier  NOT NULL,
+    [UserUserId] int  NOT NULL,
     [Message] nvarchar(max)  NOT NULL,
     [DateTime] datetime  NOT NULL
 );
@@ -172,18 +193,17 @@ GO
 
 -- Creating table 'Users'
 CREATE TABLE [dbo].[Users] (
-    [UserId] uniqueidentifier  NOT NULL,
+    [UserId] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
-    [Role] nvarchar(max)  NOT NULL,
-    [UserUser_User1_UserId] uniqueidentifier  NULL
+    [UserUser_User1_UserId] int  NULL
 );
 GO
 
 -- Creating table 'Programs'
 CREATE TABLE [dbo].[Programs] (
-    [ProgramId] uniqueidentifier  NOT NULL,
-    [UserUserId] uniqueidentifier  NOT NULL,
+    [ProgramId] int  NOT NULL,
+    [UserUserId] int  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [IsOpenToWorld] bit  NOT NULL,
     [Cost] decimal(18,0)  NULL,
@@ -191,10 +211,54 @@ CREATE TABLE [dbo].[Programs] (
 );
 GO
 
+-- Creating table 'Memberships'
+CREATE TABLE [dbo].[Memberships] (
+    [CreateDate] datetime  NULL,
+    [ConfirmationToken] nvarchar(max)  NULL,
+    [IsConfirmed] bit  NOT NULL,
+    [LastPasswordFailureDate] datetime  NULL,
+    [PasswordFailuresSinceLastSuccess] int  NOT NULL,
+    [PasswordChangedDate] datetime  NULL,
+    [PasswordSalt] nvarchar(max)  NOT NULL,
+    [PasswordVerificationToken] nvarchar(max)  NULL,
+    [PasswordVerificationTokenExpirationDate] datetime  NULL,
+    [UserId] int  NOT NULL
+);
+GO
+
+-- Creating table 'OAuthMemberships'
+CREATE TABLE [dbo].[OAuthMemberships] (
+    [Provider] nvarchar(30)  NOT NULL,
+    [ProviderUserId] nvarchar(100)  NOT NULL,
+    [UserId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Configs'
+CREATE TABLE [dbo].[Configs] (
+    [Key] nvarchar(30)  NOT NULL,
+    [Value] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Roles'
+CREATE TABLE [dbo].[Roles] (
+    [RoleId] int IDENTITY(1,1) NOT NULL,
+    [RoleName] nvarchar(max)  NOT NULL
+);
+GO
+
 -- Creating table 'ExcerciseMuscle'
 CREATE TABLE [dbo].[ExcerciseMuscle] (
-    [Excercises_ExcerciseId] uniqueidentifier  NOT NULL,
-    [Muscles_MuscleId] uniqueidentifier  NOT NULL
+    [Excercises_ExcerciseId] int  NOT NULL,
+    [Muscles_MuscleId] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserRole'
+CREATE TABLE [dbo].[UserRole] (
+    [Users_UserId] int  NOT NULL,
+    [Roles_RoleId] int  NOT NULL
 );
 GO
 
@@ -256,10 +320,40 @@ ADD CONSTRAINT [PK_Programs]
     PRIMARY KEY CLUSTERED ([ProgramId] ASC);
 GO
 
+-- Creating primary key on [UserId] in table 'Memberships'
+ALTER TABLE [dbo].[Memberships]
+ADD CONSTRAINT [PK_Memberships]
+    PRIMARY KEY CLUSTERED ([UserId] ASC);
+GO
+
+-- Creating primary key on [Provider], [ProviderUserId] in table 'OAuthMemberships'
+ALTER TABLE [dbo].[OAuthMemberships]
+ADD CONSTRAINT [PK_OAuthMemberships]
+    PRIMARY KEY CLUSTERED ([Provider], [ProviderUserId] ASC);
+GO
+
+-- Creating primary key on [Key] in table 'Configs'
+ALTER TABLE [dbo].[Configs]
+ADD CONSTRAINT [PK_Configs]
+    PRIMARY KEY CLUSTERED ([Key] ASC);
+GO
+
+-- Creating primary key on [RoleId] in table 'Roles'
+ALTER TABLE [dbo].[Roles]
+ADD CONSTRAINT [PK_Roles]
+    PRIMARY KEY CLUSTERED ([RoleId] ASC);
+GO
+
 -- Creating primary key on [Excercises_ExcerciseId], [Muscles_MuscleId] in table 'ExcerciseMuscle'
 ALTER TABLE [dbo].[ExcerciseMuscle]
 ADD CONSTRAINT [PK_ExcerciseMuscle]
     PRIMARY KEY NONCLUSTERED ([Excercises_ExcerciseId], [Muscles_MuscleId] ASC);
+GO
+
+-- Creating primary key on [Users_UserId], [Roles_RoleId] in table 'UserRole'
+ALTER TABLE [dbo].[UserRole]
+ADD CONSTRAINT [PK_UserRole]
+    PRIMARY KEY NONCLUSTERED ([Users_UserId], [Roles_RoleId] ASC);
 GO
 
 -- --------------------------------------------------
@@ -427,6 +521,29 @@ ADD CONSTRAINT [FK_TrainingStatistic]
 CREATE INDEX [IX_FK_TrainingStatistic]
 ON [dbo].[Statistics]
     ([Training_TrainingId]);
+GO
+
+-- Creating foreign key on [Users_UserId] in table 'UserRole'
+ALTER TABLE [dbo].[UserRole]
+ADD CONSTRAINT [FK_UserRole_User]
+    FOREIGN KEY ([Users_UserId])
+    REFERENCES [dbo].[Users]
+        ([UserId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Roles_RoleId] in table 'UserRole'
+ALTER TABLE [dbo].[UserRole]
+ADD CONSTRAINT [FK_UserRole_Role]
+    FOREIGN KEY ([Roles_RoleId])
+    REFERENCES [dbo].[Roles]
+        ([RoleId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserRole_Role'
+CREATE INDEX [IX_FK_UserRole_Role]
+ON [dbo].[UserRole]
+    ([Roles_RoleId]);
 GO
 
 -- --------------------------------------------------

@@ -14,7 +14,7 @@ namespace SportTracker.Domain
     
     public partial class Statistic
     {
-        public System.Guid StatisticId { get; set; }
+        public int StatisticId { get; set; }
         public short SetNumber { get; set; }
         public short RepsCount { get; set; }
         public double Weight { get; set; }

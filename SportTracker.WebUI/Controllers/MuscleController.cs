@@ -12,15 +12,15 @@ namespace SportTracker.WebUI.Controllers
 {
 	public class MuscleController : BootstrapBaseController
 	{
-		private IMuscleRepository repository;
-		public MuscleController(IMuscleRepository productRepository)
+		
+		public MuscleController()
 		{
-			this.repository = productRepository;
+			
 		}
 
 		public ViewResult List()
 		{
-			return View(repository.Muscles);
+			return View();
 
 		}
 	}

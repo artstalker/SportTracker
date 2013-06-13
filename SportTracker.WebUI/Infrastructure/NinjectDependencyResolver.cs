@@ -35,9 +35,12 @@ namespace SportTracker.WebUI.Infrastructure
 
       private void AddBindings()
       {
-         kernel.Bind<IMuscleRepository>().To<MuscleRepository>();
+        
          kernel.Bind<IUserRepository>().To<UserRepository>();
          kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+
+			kernel.Bind<IEmailService>().To<EmailService>();
+			kernel.Bind<IConfigService>().To<ConfigService>();
       }		
 	}
 }

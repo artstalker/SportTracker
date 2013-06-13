@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using SportTracker.Domain.Abstract;
+
+namespace SportTracker.Domain.Concrete
+{
+	//public partial class Entities : IDatabaseContext
+	//{
+	//	IDbSet<User> IDatabaseContext.Users
+	//	{
+	//		get { return this.; }
+	//	}
+
+	//	IDbSet<OAuthMembership> IDatabaseContext.OAuthMemberships
+	//	{
+	//		get { return this.OAuthMemberships; }
+	//	}
+
+	//	void IDatabaseContext.Add(User userProfile)
+	//	{
+	//		this.Set<UserProfile>().Add(userProfile);
+	//	}
+
+	//	void IDatabaseContext.Add(OAuthMembership oAuthMembership)
+	//	{
+	//		this.Set<OAuthMembership>().Add(oAuthMembership);
+	//	}
+
+	//	void IDatabaseContext.Add(Membership membership)
+	//	{
+	//		this.Set<Membership>().Add(membership);
+	//	}
+
+	//	IDbSet<Membership> IDatabaseContext.Memberships
+	//	{
+	//		get { return this.Memberships; }
+	//	}
+
+	//	IDbSet<Config> IDatabaseContext.Configs
+	//	{
+	//		get { return this.Configs; }
+	//	}
+
+	//	void IDatabaseContext.SaveChanges()
+	//	{
+	//		try
+	//		{
+	//			this.SaveChanges();
+	//		}
+	//		catch (DbEntityValidationException ex)
+	//		{
+	//			foreach (var err in ex.EntityValidationErrors)
+	//			{
+	//			}
+	//			throw ex;
+	//		}
+	//	}
+
+	//	IDbSet<Role> IDatabaseContext.Roles
+	//	{
+	//		get { return this.Roles; }
+	//	}
+
+	//}
+}

@@ -36,5 +36,8 @@ namespace SportTracker.Domain
         public DbSet<User> Users { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<Membership> Memberships { get; set; }
+        public DbSet<OAuthMembership> OAuthMemberships { get; set; }
+        public DbSet<Config> Configs { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }

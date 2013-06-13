@@ -19,7 +19,7 @@ namespace SportTracker.Domain
             this.Excercises = new HashSet<Excercise>();
         }
     
-        public System.Guid MuscleId { get; set; }
+        public int MuscleId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }

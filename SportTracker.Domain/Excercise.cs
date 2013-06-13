@@ -21,7 +21,7 @@ namespace SportTracker.Domain
             this.Statistics = new HashSet<Statistic>();
         }
     
-        public System.Guid ExcerciseId { get; set; }
+        public int ExcerciseId { get; set; }
         public string Name { get; set; }
         public string Complexity { get; set; }
         public string Description { get; set; }

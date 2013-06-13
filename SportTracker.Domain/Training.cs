@@ -19,7 +19,7 @@ namespace SportTracker.Domain
             this.Statistics = new HashSet<Statistic>();
         }
     
-        public System.Guid TrainingId { get; set; }
+        public int TrainingId { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<int> Shift { get; set; }
         public bool IsActive { get; set; }

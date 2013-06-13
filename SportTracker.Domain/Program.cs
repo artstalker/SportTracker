@@ -20,8 +20,8 @@ namespace SportTracker.Domain
             this.ProgramExcercises = new HashSet<ProgramExcercise>();
         }
     
-        public System.Guid ProgramId { get; set; }
-        public System.Guid UserUserId { get; set; }
+        public int ProgramId { get; set; }
+        public int UserUserId { get; set; }
         public string Name { get; set; }
         public bool IsOpenToWorld { get; set; }
         public Nullable<decimal> Cost { get; set; }

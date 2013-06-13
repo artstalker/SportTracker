@@ -1,7 +1,13 @@
-﻿namespace SportTracker.Domain.Abstract
+﻿using System.Linq;
+
+namespace SportTracker.Domain.Abstract
 {
-   public interface IBaseRepository
+   public interface IBaseRepository<T>
    {
-      void Save();
+      void Save(T entity);
+
+		IQueryable<T> Entities { get; }
+		void Add(T user);
+		void Update(T user);
    }
 }

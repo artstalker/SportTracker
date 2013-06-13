@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+
+using SportTracker.WebUI.App_Start;
 using SportTracker.WebUI.Infrastructure;
 
 namespace SportTracker.WebUI
@@ -29,6 +31,7 @@ namespace SportTracker.WebUI
             BootstrapMvcSample.ExampleLayoutsRouteConfig.RegisterRoutes(RouteTable.Routes);
 
 			//WebSecurityInitializer.Instance.EnsureInitialize();
+				AuthConfig.RegisterAuth();
 		}
 	}
 }

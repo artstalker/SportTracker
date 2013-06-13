@@ -21,17 +21,18 @@ namespace SportTracker.Domain
             this.Programs = new HashSet<Program>();
             this.Tweets = new HashSet<Tweet>();
             this.Trainings = new HashSet<Training>();
+            this.Roles = new HashSet<Role>();
         }
     
-        public System.Guid UserId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Role { get; set; }
     
         public virtual ICollection<BodyStamp> BodyStamps { get; set; }
         public virtual ICollection<User> Friends { get; set; }
         public virtual ICollection<Program> Programs { get; set; }
         public virtual ICollection<Tweet> Tweets { get; set; }
         public virtual ICollection<Training> Trainings { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

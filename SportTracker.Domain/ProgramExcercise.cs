@@ -14,12 +14,12 @@ namespace SportTracker.Domain
     
     public partial class ProgramExcercise
     {
-        public System.Guid ProgramExcerciseId { get; set; }
+        public int ProgramExcerciseId { get; set; }
         public string Day { get; set; }
         public short Order { get; set; }
         public string SetCounts { get; set; }
         public string RepsScheme { get; set; }
-        public System.Guid ProgramProgramId { get; set; }
+        public int ProgramProgramId { get; set; }
     
         public virtual Excercise Excercise { get; set; }
         public virtual Program Program { get; set; }

@@ -15,7 +15,7 @@ namespace SportTracker.Domain
     public partial class Tweet
     {
         public int TweetId { get; set; }
-        public System.Guid UserUserId { get; set; }
+        public int UserUserId { get; set; }
         public string Message { get; set; }
         public System.DateTime DateTime { get; set; }
     
