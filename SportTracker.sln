@@ -17,6 +17,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{31D6C52F-D378-4571-B2C6-CBF2A2DA4919}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\dbo.Muscles.sql = Scripts\dbo.Muscles.sql
+		ResetConnectionsToMSSQLDatabase.sql = ResetConnectionsToMSSQLDatabase.sql
 	EndProjectSection
 EndProject
 Global

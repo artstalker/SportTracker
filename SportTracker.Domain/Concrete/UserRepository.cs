@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,8 +12,8 @@ using SportTracker.Domain.Entities;
 
 namespace SportTracker.Domain.Concrete
 {
-   public class UserRepository : BaseRepository, IUserRepository
-   {
+	public class UserRepository : BaseRepository, IUserRepository
+	{
 
 		private readonly IConfigService configService;
 		private readonly IEmailService emailService;
@@ -23,49 +24,52 @@ namespace SportTracker.Domain.Concrete
 			this.emailService = emailService;
 		}
 
-      #region Implementation of IUserRepository
+		#region Implementation of IUserRepository
 		public IQueryable<User> Entities
-      {
-         get
-         {
-            return _container.Users.Include("BodyStamps").Include("Friends").Include("Programs").Include("Tweets").Include("Trainings");
-         }
-      }
+		{
+			get
+			{
+				//SqlConnection.ClearAllPools();
+				//var _container = new ModelSportTrackerContainer(Connection.ConnectionStringName);
+				//_container.Database.Initialize(false);
+				return _container.Users.Include("BodyStamps").Include("Friends").Include("Programs").Include("Tweets").Include("Trainings");
+			}
+		}
 
-	   public void Save(User entity)
-	   {
+		public void Save(User entity)
+		{
 			if (entity.UserId <= 0)
 			{
 				_container.Users.Add(entity);
 			}
 			_container.SaveChanges();
-	   }
+		}
 
 
-	   public void Add(User user)
-      {
-         _container.Users.Add(user);         
-      }
+		public void Add(User user)
+		{
+			_container.Users.Add(user);
+		}
 
-      public void Update(User user)
-      {
-         _container.Users.Attach(user);
-         _container.Entry(user).State = EntityState.Modified;
-         _container.ChangeTracker.DetectChanges();
-			
-      }      
-      #endregion
+		public void Update(User user)
+		{
+			_container.Users.Attach(user);
+			_container.Entry(user).State = EntityState.Modified;
+			_container.ChangeTracker.DetectChanges();
 
-	   public User GetUserProfile(string userName)
-	   {
+		}
+		#endregion
+
+		public User GetUserProfile(string userName)
+		{
 			return Entities.FirstOrDefault(x => x.Email.Equals(userName));
-	   }
+		}
 
-	   public User GetUserProfile(int userId)
-	   {
+		public User GetUserProfile(int userId)
+		{
 			return Entities.FirstOrDefault(x => x.UserId.Equals(userId));
-			
-	   }
+
+		}
 
 		OAuthMembership IUserRepository.GetOAuthMembership(string provider, string providerUserId)
 		{
@@ -215,5 +219,5 @@ namespace SportTracker.Domain.Concrete
 
 			_container.SaveChanges();
 		}
-   }
+	}
 }

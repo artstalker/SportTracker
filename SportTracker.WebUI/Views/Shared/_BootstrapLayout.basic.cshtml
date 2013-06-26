@@ -15,30 +15,38 @@
 <body>
 	@if (User.IsInRole("Admin"))
  {
-		@Html.Action("_toolbar", "parts", new { area = "admin" });
+		@Html.Action("_Toolbar", "parts", new { area = "admin" });
  }
-	<header>
-		<section id="login">
-			@Html.Partial("_LoginPartial")
-		</section>
-	</header>
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<header class="navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href="#" title="change in _bootstrapLayout.basic.cshtml">Application Name</a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						@Html.Navigation()
-					</ul>
-				</div>
+				<a class="brand" style="font-size: 30px; margin: 20px" href="#" title="change in _bootstrapLayout.basic.cshtml">SportTracker</a>
+				<nav>
+					@Html.Partial("_LoginPartial")
+				</nav>
 			</div>
 		</div>
+		
+		
+		<div class="navbar-inner">
+			<div class="container">
+				<!--<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>-->
+				
+				<nav>
+					<ul class="nav nav-tabs">
+						@Html.Navigation()
+					</ul>
+				</nav>
+			</div>
+		
+		
 	</div>
+	</header>
+	
 	<div class="container">
 		@Html.Partial("_alerts")
 		@Html.Partial("_validationSummary")

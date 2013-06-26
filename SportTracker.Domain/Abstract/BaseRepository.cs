@@ -11,6 +11,7 @@ namespace SportTracker.Domain.Abstract
 
       protected BaseRepository()
       {
+			
          _container = new ModelSportTrackerContainer(Connection.ConnectionStringName);
       }
 

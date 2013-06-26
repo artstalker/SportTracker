@@ -75,6 +75,7 @@
     <Compile Include="Membership.cs">
       <DependentUpon>ModelSportTracker.tt</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelSportTracker.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +113,7 @@
     <Compile Include="Role.cs">
       <DependentUpon>ModelSportTracker.tt</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\EntitiesContextInitializer.cs" />
     <Compile Include="Statistic.cs">
       <DependentUpon>ModelSportTracker.tt</DependentUpon>
     </Compile>

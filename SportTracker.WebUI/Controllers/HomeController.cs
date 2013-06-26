@@ -18,6 +18,31 @@ namespace BootstrapMvcSample.Controllers
             return View(homeInputModels);
         }
 
+		 public ActionResult Training()
+		 {
+			 return View();
+		 }
+
+		 public ActionResult Statistic()
+		 {
+			 return View();
+		 }
+
+		 public ActionResult Friends()
+		 {
+			 return View();
+		 }
+
+		 public ActionResult Calendar()
+		 {
+			 return View();
+		 }
+
+		 public ActionResult Competitions()
+		 {
+			 return View();
+		 }
+
         [HttpPost]
         public ActionResult Create(HomeInputModel model)
         {
