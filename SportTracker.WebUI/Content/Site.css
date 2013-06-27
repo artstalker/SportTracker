@@ -1,40 +1,8 @@
-﻿body {
-	font-size: .85em;
-	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-	color: #232323;
-	background-color: #fff;
+﻿
+body {
+	padding-top: 120px;
+	height: 100%;
 }
-
-header, footer, nav, section {
-	display: block;
-}
-
-
-/* Styles for basic forms
------------------------------------------------------------*/
-fieldset {
-	border: 1px solid #ddd;
-	padding: 0 1.4em 1.4em 1.4em;
-	margin: 0 0 1.5em 0;
-}
-
-legend {
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
-textarea {
-	min-height: 75px;
-}
-
-.editor-label {
-	margin: 1em 0 0 0;
-}
-
-.editor-field {
-	margin: 0.5em 0 0 0;
-}
-
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
@@ -64,3 +32,52 @@ ul.admtoolbar {
 	background-color: lightgray;
 	margin: 0 0 0 0;
 }
+
+
+/* footer */
+
+.content-wrap {
+	padding-bottom: 30px;
+	height: 640px;
+	/*padding-bottom should be exactly the same as height of our footer;*/
+}
+
+
+
+.footer {
+	clear: both;
+	position: relative;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background: black;
+	color: #fff;
+	border-top: 5px #000 solid;
+	height: 45px;
+	margin-top: -31px;
+}
+
+
+
+
+a {
+	color: gray;
+}
+
+	a.hover {
+		color: darkgrey;
+	}
+
+small {
+	float: left;
+}
+
+ul {
+	float: right;
+	list-style: none;
+}
+
+ul li {
+		float: left;
+		margin-left: 10px;
+	}

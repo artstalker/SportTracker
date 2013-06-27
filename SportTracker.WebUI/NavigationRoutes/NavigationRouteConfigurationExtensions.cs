@@ -52,6 +52,7 @@ namespace NavigationRoutes
             var newRoute = new NamedRoute("", "", new MvcRouteHandler());
             newRoute.ToDefaultAction(action,areaName);
             newRoute.DisplayName = displayName;
+				//routes.Insert(0, newRoute);
             routes.Add(newRoute.Name, newRoute);
             return new NavigationRouteBuilder(routes, newRoute);
         }

@@ -32,7 +32,8 @@ namespace SportTracker.WebUI
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-			BootstrapSupport.BootstrapBundleConfig.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
+			BootstrapSupport.BootstrapBundleConfig.RegisterBundles(BundleTable.Bundles);
+			
 			BootstrapMvcSample.ExampleLayoutsRouteConfig.RegisterRoutes(RouteTable.Routes);
 
 			//WebSecurityInitializer.Instance.EnsureInitialize();

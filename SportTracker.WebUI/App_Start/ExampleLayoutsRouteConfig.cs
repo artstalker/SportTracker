@@ -26,6 +26,9 @@ namespace BootstrapMvcSample
 				routes.MapNavigationRoute<HomeController>("Friends", c => c.Friends());
 				routes.MapNavigationRoute<HomeController>("Calendar", c => c.Calendar());
 				routes.MapNavigationRoute<HomeController>("Competitions", c => c.Competitions());
+
+				//routes.MapNavigationRoute<HomeController>("About", c => c.Competitions());
+				//routes.MapNavigationRoute<HomeController>("Contact Us", c => c.Competitions());
         }
     }
 }

@@ -38,6 +38,12 @@ namespace NavigationRoutes
                 GetRoutesForCurrentRequest(RouteTable.Routes,NavigationRoutes.Filters).Select(namedRoute => helper.NavigationListItemRouteLink(namedRoute)));
         }
 
+		  public static IHtmlString FooterNavigation(this HtmlHelper helper)
+		  {
+			  return new CompositeMvcHtmlString(
+					GetRoutesForCurrentRequest(RouteTable.Routes, NavigationRoutes.Filters).Select(namedRoute => helper.NavigationListItemRouteLink(namedRoute)));
+		  }
+
         public static IEnumerable<NamedRoute> GetRoutesForCurrentRequest(RouteCollection routes,IEnumerable<INavigationRouteFilter> routeFilters)
         {
             var navigationRoutes = routes.OfType<NamedRoute>().Where(r=>r.IsChild==false).ToList();
