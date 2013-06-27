@@ -56,103 +56,39 @@
     <Compile Include="Abstract\IConfigService.cs" />
     <Compile Include="Abstract\IEmailService.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
-    <Compile Include="BodyStamp.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
     <Compile Include="Concrete\ConfigService.cs" />
     <Compile Include="Concrete\EmailService.cs" />
-    <Compile Include="Concrete\Entities.cs" />
-    <Compile Include="Config.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Entities\BodyStamp.cs" />
+    <Compile Include="Entities\Config.cs" />
+    <Compile Include="Entities\Excercise.cs" />
     <Compile Include="Entities\Membership.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
-    <Compile Include="Connection.cs" />
+    <Compile Include="Entities\Muscle.cs" />
+    <Compile Include="Entities\OAuthMembership.cs" />
+    <Compile Include="Entities\Program.cs" />
+    <Compile Include="Entities\ProgramExcercise.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\SendEmailModel.cs" />
-    <Compile Include="Excercise.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Membership.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Entities\Statistic.cs" />
+    <Compile Include="Entities\Training.cs" />
+    <Compile Include="Entities\Tweet.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ModelSportTracker.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSportTracker.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelSportTracker.Designer.cs">
-      <DependentUpon>ModelSportTracker.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="ModelSportTracker1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelSportTrackerContainer.cs" />
-    <Compile Include="Muscle.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OAuthMembership.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProgramExcercise.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Global.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Global.resx</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
     <Compile Include="SampleData\EntitiesContextInitializer.cs" />
-    <Compile Include="Statistic.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Training.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tweet.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>ModelSportTracker.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ModelSportTracker.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSportTracker.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="ModelSportTracker.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSportTracker.edmx</DependentUpon>
-      <LastGenOutput>ModelSportTracker.Context.cs</LastGenOutput>
-    </None>
-    <None Include="ModelSportTracker.edmx.diagram">
-      <DependentUpon>ModelSportTracker.edmx</DependentUpon>
-    </None>
-    <None Include="ModelSportTracker.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSportTracker.edmx</DependentUpon>
-      <LastGenOutput>ModelSportTracker1.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ModelSportTracker.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Global.resx">

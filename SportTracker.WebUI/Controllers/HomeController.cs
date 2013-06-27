@@ -4,44 +4,37 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Models;
+using SportTracker.Domain;
+using SportTracker.Domain.Entities;
 
 namespace BootstrapMvcSample.Controllers
 {
-	
-    public class HomeController : BootstrapBaseController
-    {
-        private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
-        public ActionResult Index()
-        {
-           
-            var homeInputModels = _models;                                      
-            return View(homeInputModels);
-        }
 
-		 public ActionResult Training()
-		 {
-			 return View();
-		 }
+   public class HomeController : BootstrapBaseController
+   {
+      private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
 
-		 public ActionResult Statistic()
-		 {
-			 return View();
-		 }
+      public ActionResult Index()
+      {
+         //           base {System.SystemException} = {"The context cannot be used while the model is being created."}
+         var homeInputModels = _models;
+         return View(homeInputModels);
+      }
 
-		 public ActionResult Friends()
-		 {
-			 return View();
-		 }
+      public ActionResult Training()
+      {
+         return View();
+      }
 
-		 public ActionResult Calendar()
-		 {
-			 return View();
-		 }
+      public ActionResult Statistic()
+      {
+         return View();
+      }
 
-		 public ActionResult Competitions()
-		 {
-			 return View();
-		 }
+      public ActionResult Friends()
+      {
+         return View();
+      }
 
 		 public ActionResult About()
 		 {
@@ -67,45 +60,58 @@ namespace BootstrapMvcSample.Controllers
             return View(model);
         }
 
-        public ActionResult Create()
-        {
-            return View(new HomeInputModel());
-        }
+      public ActionResult Calendar()
+      {
+         return View();
+      }
 
-        public ActionResult Delete(int id)
-        {
+
+      public ActionResult Competitions()
+      {
+         return View();
+      }
+
+      
+
+      public ActionResult Create()
+      {
+         return View(new HomeInputModel());
+      }
+
+      public ActionResult Delete(int id)
+      {
+         _models.Remove(_models.Get(id));
+         Information("Your widget was deleted");
+         if (_models.Count == 0)
+         {
+            Attention("You have deleted all the models! Create a new one to continue the demo.");
+         }
+         return RedirectToAction("index");
+      }
+      public ActionResult Edit(int id)
+      {
+         var model = _models.Get(id);
+         return View("Create", model);
+      }
+      [HttpPost]
+      public ActionResult Edit(HomeInputModel model, int id)
+      {
+         if (ModelState.IsValid)
+         {
             _models.Remove(_models.Get(id));
-            Information("Your widget was deleted");
-            if(_models.Count==0)
-            {
-                Attention("You have deleted all the models! Create a new one to continue the demo.");
-            }
+            model.Id = id;
+            _models.Add(model);
+            Success("The model was updated!");
             return RedirectToAction("index");
-        }
-        public ActionResult Edit(int id)
-        {
-            var model = _models.Get(id);
-            return View("Create", model);
-        }
-        [HttpPost]        
-        public ActionResult Edit(HomeInputModel model,int id)
-        {
-            if(ModelState.IsValid)
-            {
-                _models.Remove(_models.Get(id));
-                model.Id = id;
-                _models.Add(model);
-                Success("The model was updated!");
-                return RedirectToAction("index");
-            }
-            return View("Create", model);
-        }
+         }
+         return View("Create", model);
+      }
 
-		public ActionResult Details(int id)
-        {
-            var model = _models.Get(id);
-            return View(model);
-        }
+      public ActionResult Details(int id)
+      {
+         var model = _models.Get(id);
+         return View(model);
+      }
 
-    }
+   }
 }

@@ -1,8 +1,9 @@
 ﻿@using SportTracker.Domain.Entities
-@model SportTracker.Domain.User
+@using Membership = SportTracker.Domain.Entities.Membership
+@model User
 
 @{ 
-	var membership = (SportTracker.Domain.Membership)ViewBag.Membership;
+	var membership = (Membership)ViewBag.Membership;
     var sendEmailModel = (SendEmailModel)ViewBag.SendEmailModel; 
     var activationLink = sendEmailModel.WebsiteURL + Url.Action("confirmation", "register", new { guid = membership.ConfirmationToken, area = "account" }); 
 }

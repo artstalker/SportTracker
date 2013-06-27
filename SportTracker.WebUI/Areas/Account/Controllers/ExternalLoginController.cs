@@ -6,6 +6,7 @@ using Microsoft.Web.WebPages.OAuth;
 
 using SportTracker.Domain;
 using SportTracker.Domain.Abstract;
+using SportTracker.Domain.Entities;
 using SportTracker.WebUI.Areas.Account.Models;
 
 namespace SportTracker.WebUI.Areas.Account.Controllers
