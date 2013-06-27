@@ -9,6 +9,7 @@ using System.Web.Security;
 
 using SportTracker.Domain.Abstract;
 using SportTracker.Domain.Entities;
+using Membership = SportTracker.Domain.Entities.Membership;
 
 namespace SportTracker.Domain.Concrete
 {

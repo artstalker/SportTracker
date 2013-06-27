@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SportTracker.Domain.Entities
+﻿namespace SportTracker.Domain.Entities
 {
-	public class SendEmailModel
-	{
-		public string EmailAddress { get; set; }
-		public string Subject { get; set; }
+   public class SendEmailModel
+   {
+      public string EmailAddress { get; set; }
+      public string Subject { get; set; }
 
-		public string WebsiteURL { get; set; }
-		public string WebsiteTitle { get; set; }
-		public string WebsiteUrlName { get; set; }
-	}
+      public string WebsiteURL { get; set; }
+      public string WebsiteTitle { get; set; }
+      public string WebsiteUrlName { get; set; }
+   }
 }

@@ -1,25 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
+﻿#region using
 using System.Data.Entity.Validation;
 using System.Linq;
+
+#endregion
 
 namespace SportTracker.Domain.Abstract
 {
    public class BaseRepository
    {
-      protected ModelSportTrackerContainer _container;
+      protected ModelContext _container;
 
       protected BaseRepository()
       {
-			
-         _container = new ModelSportTrackerContainer(Connection.ConnectionStringName);
+         _container = new ModelContext();
       }
 
       public void Save()
-      {         
+      {
          if (_container.GetValidationErrors().Any())
          {
-            throw new DbEntityValidationException("Validation error", _container.GetValidationErrors().ToList());            
+            throw new DbEntityValidationException("Validation error", _container.GetValidationErrors().ToList());
          }
          _container.SaveChanges();
       }
