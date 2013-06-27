@@ -73,6 +73,10 @@
     <Compile Include="Entities\Training.cs" />
     <Compile Include="Entities\Tweet.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Migrations\201306271407499_InitialMig.cs" />
+    <Compile Include="Migrations\201306271407499_InitialMig.Designer.cs">
+      <DependentUpon>201306271407499_InitialMig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +95,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201306271407499_InitialMig.resx">
+      <DependentUpon>201306271407499_InitialMig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Global.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.Designer.cs</LastGenOutput>

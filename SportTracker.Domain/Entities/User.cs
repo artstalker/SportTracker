@@ -19,6 +19,7 @@ namespace SportTracker.Domain.Entities
 
       public int UserId { get; set; }
       public string Name { get; set; }
+		public string NameQas { get; set; }
       public string Email { get; set; }
 
       public virtual ICollection<BodyStamp> BodyStamps { get; set; }

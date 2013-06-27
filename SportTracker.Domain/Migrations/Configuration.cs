@@ -8,15 +8,17 @@ namespace SportTracker.Domain.Migrations
    using System.Data.Entity.Migrations;
    using System.Linq;
 
-   public sealed class Configuration : DbMigrationsConfiguration<SportTracker.Domain.ModelContext>
+   public sealed class Configuration : DbMigrationsConfiguration<ModelContext>
    {
       public Configuration()
       {
          AutomaticMigrationsEnabled = true;
          AutomaticMigrationDataLossAllowed = true;
       }
+		
+		
 
-      protected override void Seed(SportTracker.Domain.ModelContext context)
+      protected override void Seed(ModelContext context)
       {
          //  This method will be called after migrating to the latest version.
 
@@ -30,14 +32,16 @@ namespace SportTracker.Domain.Migrations
          //      new Person { FullName = "Rowan Miller" }
          //    );
          //
-         PopulateConfigs(context);
-         PopulateRoles(context);
+			PopulateRoles(context);
+			PopulateConfigs(context);
+			PopulateUsers(context);
+			PopulateMembership(context);
 
       }
 
-      private void PopulateConfigs(ModelContext context)
-      {
-         List<Config> configs = new List<Config>
+		private void PopulateConfigs(ModelContext context)
+		{
+			List<Config> configs = new List<Config>
 				{
 					new Config(){Key="WebsiteTitle", Value = "SportTracker"},
 					new Config(){Key="WebsiteUrl", Value = "http://localhost:28255"},
@@ -45,24 +49,43 @@ namespace SportTracker.Domain.Migrations
 				};
 
 
-         foreach (Config r in configs)
-         {
-            context.Configs.Add(r);
-         }
-         context.SaveChanges();
-      }
+			
+				context.Configs.AddOrUpdate(configs.ToArray());
+			
 
-      private void PopulateRoles(ModelContext context)
-      {
-         List<Role> roles = new List<Role> { new Role { RoleName = "Admin" }, new Role { RoleName = "User" }, };
+		}
 
-         // add data into context and save to db
-         foreach (Role r in roles)
-         {
-            context.Roles.Add(r);
-         }
-         context.SaveChanges();
-      }
-   }
+		private void PopulateRoles(ModelContext context)
+		{
+			List<Role> roles = new List<Role> { new Role { RoleName = "Admin" }, new Role { RoleName = "User" }, };
+
+			
+			context.Roles.AddOrUpdate(roles.ToArray());
+			context.SaveChanges();
+		}
+
+		private void PopulateUsers(ModelContext context)
+		{
+			User user = new User() { Email = "groshevoy@gmail.com", Name = "groshevoy@gmail.com" };
+			user.Roles.Add(context.Roles.First(x => x.RoleName == "Admin"));
+
+			context.Users.AddOrUpdate(user);
+			context.SaveChanges();
+		}
+
+		private void PopulateMembership(ModelContext context)
+		{
+			Membership membership = new Membership()
+			{
+				CreateDate = new DateTime(2013, 06, 13),
+				IsConfirmed = true,
+				PasswordSalt = "0DE5558BFFDFF421FD936C9E0EFCA1E9B2D41302"
+			};
+			membership.User = context.Users.First();
+			membership.UserId = membership.User.UserId;
+			context.Memberships.AddOrUpdate(membership);
+
+		}
+	}
 
 }
